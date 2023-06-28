@@ -1,0 +1,23 @@
+---
+# no host since we are creating instance
+- hosts: localhost
+  tasks:
+    #- ec2:
+    - amazon.aws.ec2_instance:
+        key_name: "in28-kp"
+        instance_type: t2.micro
+        image_id: ami-090e0fc566929d98b
+        region: us-east-1
+        count: 1
+        vpc_subnet_id: subnet-004eadfb1a635f8db
+        network:
+          assign_public_ip: yes
+        # security group
+        security_group: launch-wizard-1
+        tags: 
+          type: http
+          Environment: Dev
+        # waits creation
+        wait: true
+      register: ec2_output
+    - debug: var=ec2_output
