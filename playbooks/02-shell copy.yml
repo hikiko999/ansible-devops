@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: Execute Shell Commands
+      shell: uname
+      # Output
+      register: uname_result
+    - debug: msg="{{ uname_result.stdout }}"
