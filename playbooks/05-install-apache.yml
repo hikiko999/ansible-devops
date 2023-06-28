@@ -1,0 +1,14 @@
+---
+- hosts: dev
+  # sudo
+  become: true
+  tasks:
+    - yum:
+        name:
+          - httpd
+        # ensure installed latest
+        state: present
+    - service: name=httpd state=started
+    - raw: "echo Welcome to LCROSENDO | sudo tee /var/www/html/index.html"
+
+
