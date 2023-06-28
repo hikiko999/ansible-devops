@@ -1,0 +1,22 @@
+---
+- hosts: qa
+  vars:
+    #system: "Linux"
+    system: "Windows"
+    color: "Red"
+  tasks:
+    #- debug: var=hostvars
+    - debug: var=ansible_system
+    - debug: var=color
+      when: system == 'Linux'
+    #- debug: var=item
+    - debug: var=item.name
+    # iterates list items
+      with_items:
+      #- item1
+      - name: Ranga
+        country: India
+      - name: Jane
+        country: US
+      - name: Doe
+        country: Netherlands
