@@ -8,12 +8,22 @@
         instance_type: t2.micro
         image_id: ami-090e0fc566929d98b
         region: us-east-1
-        count: 1
+        # to make declarative
+        #count: 1
+        # ensure number of instances running with a tag matches exact_count
+        exact_count: 2
+        #exact_count: 0
+        # counts based on number of http inst // ec2 module
+        # count_tag: {type: http}
+        # filters seems to break counting
+        #filters:
+        #  'tag:type': 'http'
+        #    - http
         vpc_subnet_id: subnet-004eadfb1a635f8db
         network:
           assign_public_ip: yes
-        # security group
-        security_group: launch-wizard-1
+          # security group
+          security_group: launch-wizard-1
         tags: 
           type: http
           Environment: Dev
